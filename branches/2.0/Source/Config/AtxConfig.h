@@ -72,9 +72,18 @@
 /* Microsoft C Compiler */
 #if defined(_MSC_VER)
 #define ATX_strdup _strdup
-#if (_MSC_VER >= 1400)
+#if (_MSC_VER >= 1300)
+typedef __w64 long ATX_PointerLong;
+#define ATX_POINTER_TO_LONG(_p) ((long)(ATX_PointerLong) (_p) )
 #undef ATX_CONFIG_HAVE_STRCPY
 #endif
+#endif
+
+/*----------------------------------------------------------------------
+|   defaults
++---------------------------------------------------------------------*/
+#ifndef ATX_POINTER_TO_LONG
+#define ATX_POINTER_TO_LONG(_p) ((long)(_p))
 #endif
 
 /*----------------------------------------------------------------------
